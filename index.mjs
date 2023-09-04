@@ -2,9 +2,10 @@ import axios from "axios";
 import cheerio from "cheerio";
 
 export async function cekResi(noresi) {
+  if (!noresi) return { error: 400, message: "AWB cannot be empty" };
   return await axios({
     method: "get",
-    url: "https://cekresi.jne.co.id/" + noresi,
+    url: "https://cekresi.jne.co.id/" + noresi.trim(),
     maxRedirects: 0,
     headers: {
       Referer: "https://www.jne.co.id/",
@@ -27,6 +28,7 @@ export async function cekResi(noresi) {
       data.origin = $(".tile_stats_count").find("h4").eq(0).text();
       data.destination = $(".tile_stats_count").find("h4").eq(1).text();
       data.estimation = $(".tile_stats_count").find("h3").eq(0).text();
+      data.pod_date = $(".tile_stats_count").find("h4").eq(2).text();
       data.shipper = {
         name: $(".tile").find("h4").eq(4).text(),
         city: $(".tile").find("h4").eq(5).text(),
@@ -41,6 +43,12 @@ export async function cekResi(noresi) {
         weight: $(".tile").find("h4").eq(2).text(),
         good_desc: $(".tile").find("h4").eq(3).text(),
       };
+      if (data.pod_date !== "-") {
+        data.received_by = {
+          name: $(".col-md-3.col-sm-3.col-xs-12").find("h2").text(),
+          title: $(".col-md-3.col-sm-3.col-xs-12").find("h4").text(),
+        };
+      }
       data.history = [];
       $(".timeline")
         .find("li")
@@ -62,3 +70,5 @@ export async function cekResi(noresi) {
       }
     });
 }
+
+export default cekResi;
