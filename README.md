@@ -102,12 +102,12 @@ let res = await cekResi('YOUR_AWB');
         "date": "01-09-2023 15:07"
       },
       {
-        "status": "DELIVERED TO [PAL IMAT | 02-09-2023 19:27 | CIPAYUNG ,JAKARTA TIMUR ]",
+        "status": "DELIVERED TO [PAL **** | 02-09-2023 19:27 | CIPAYUNG ,JAKARTA TIMUR ]",
         "date": "02-09-2023 19:27"
       }
     ],
     "currentStatus": {
-      "status": "DELIVERED TO [PAL IMAT | 02-09-2023 19:27 | CIPAYUNG ,JAKARTA TIMUR ]",
+      "status": "DELIVERED TO [PAL **** | 02-09-2023 19:27 | CIPAYUNG ,JAKARTA TIMUR ]",
       "date": "02-09-2023 19:27"
     }
   }
